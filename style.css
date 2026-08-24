@@ -1,0 +1,214 @@
+/* nicolas-jimenez.github.io — academic site
+   Single stylesheet, no external dependencies. */
+
+:root {
+  --bg:        #fdfdfb;
+  --text:      #1b1b1a;
+  --muted:     #63625d;
+  --rule:      #e2e0d9;
+  --link:      #1f4e79;
+  --link-hover:#0f3557;
+  --accent-bg: #f2f0e9;
+  --measure:   43rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:        #16171a;
+    --text:      #e6e5e0;
+    --muted:     #a0a09a;
+    --rule:      #33353a;
+    --link:      #86b6e0;
+    --link-hover:#a9cdef;
+    --accent-bg: #1e2024;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Charter, "Bitstream Charter", "Sitka Text", Cambria, Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 4rem;
+}
+
+/* ---------- Header / nav ---------- */
+
+header.site {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.1rem;
+  margin-bottom: 2.4rem;
+}
+
+header.site .name {
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.6rem;
+}
+
+header.site .name a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+nav.site {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.4rem;
+  font-size: 0.95rem;
+}
+
+nav.site a {
+  color: var(--muted);
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+}
+
+nav.site a:hover { color: var(--link-hover); }
+
+nav.site a[aria-current="page"] {
+  color: var(--text);
+  border-bottom-color: var(--text);
+}
+
+/* ---------- Text ---------- */
+
+a { color: var(--link); text-decoration: none; border-bottom: 1px solid rgba(31, 78, 121, 0.28); }
+a:hover { color: var(--link-hover); border-bottom-color: currentColor; }
+@media (prefers-color-scheme: dark) { a { border-bottom-color: rgba(134, 182, 224, 0.32); } }
+
+h2 {
+  font-size: 1.18rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 2.8rem 0 1rem;
+}
+
+h2:first-of-type { margin-top: 0; }
+
+h3 { font-size: 1.05rem; font-weight: 600; margin: 0 0 0.25rem; }
+
+p { margin: 0 0 1.1rem; }
+
+ul { padding-left: 1.2rem; margin: 0 0 1.1rem; }
+li { margin-bottom: 0.45rem; }
+
+.muted { color: var(--muted); }
+.small { font-size: 0.92rem; }
+
+/* ---------- Intro block ---------- */
+
+.intro { display: flex; gap: 2rem; align-items: flex-start; }
+.intro .bio { flex: 1 1 auto; min-width: 0; }
+
+.portrait {
+  flex: 0 0 auto;
+  width: 168px;
+  height: 210px;
+  object-fit: cover;
+  border-radius: 3px;
+  background: var(--accent-bg);
+  border: 1px solid var(--rule);
+}
+
+@media (max-width: 620px) {
+  .intro { flex-direction: column; gap: 1.4rem; }
+  .portrait { width: 140px; height: 175px; }
+  body { font-size: 17px; }
+  .wrap { padding-top: 2rem; }
+}
+
+/* ---------- Definition-style lists (fields, contact) ---------- */
+
+dl.facts { margin: 0; }
+dl.facts div { display: flex; gap: 0.9rem; margin-bottom: 0.45rem; }
+dl.facts dt { flex: 0 0 7.5rem; color: var(--muted); font-size: 0.95rem; }
+dl.facts dd { margin: 0; flex: 1 1 auto; min-width: 0; }
+
+@media (max-width: 620px) {
+  dl.facts div { flex-direction: column; gap: 0.1rem; margin-bottom: 0.8rem; }
+  dl.facts dt { flex: none; }
+}
+
+/* ---------- Papers ---------- */
+
+.paper { margin-bottom: 2.1rem; }
+
+.paper .title { font-weight: 600; }
+
+.paper .meta {
+  color: var(--muted);
+  font-size: 0.94rem;
+  margin: 0.15rem 0 0.55rem;
+}
+
+.tag {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.14rem 0.5rem;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: var(--accent-bg);
+  color: var(--muted);
+  vertical-align: 0.12em;
+  margin-left: 0.45rem;
+  white-space: nowrap;
+}
+
+.links { font-size: 0.94rem; }
+.links a { margin-right: 0.9rem; }
+
+details.abstract { margin-top: 0.5rem; }
+
+details.abstract > summary {
+  cursor: pointer;
+  font-size: 0.94rem;
+  color: var(--muted);
+  list-style: none;
+  display: inline-block;
+  border-bottom: 1px dotted var(--rule);
+}
+
+details.abstract > summary::-webkit-details-marker { display: none; }
+details.abstract > summary::before { content: "▸ "; }
+details.abstract[open] > summary::before { content: "▾ "; }
+details.abstract > summary:hover { color: var(--link-hover); }
+
+details.abstract .body {
+  margin-top: 0.9rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--rule);
+  font-size: 0.96rem;
+}
+
+details.abstract .body p:last-child { margin-bottom: 0; }
+
+/* ---------- Footer ---------- */
+
+footer.site {
+  margin-top: 3.5rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+  font-size: 0.88rem;
+}
+
+footer.site p { margin: 0; }
