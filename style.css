@@ -62,6 +62,7 @@ header.site .name {
 header.site .name a {
   color: var(--text);
   text-decoration: none;
+  border-bottom: none;
 }
 
 nav.site {
